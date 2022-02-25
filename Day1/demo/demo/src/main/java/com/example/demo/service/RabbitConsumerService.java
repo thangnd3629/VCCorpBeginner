@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Profile("prod")
-public class RabbitConsumer implements IConsumer{
+public class RabbitConsumerService implements IConsumer{
     @Override
     public void consume() {
         System.out.println("Consume from rabbit");

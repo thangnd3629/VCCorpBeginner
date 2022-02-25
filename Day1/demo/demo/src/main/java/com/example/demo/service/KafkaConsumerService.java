@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +10,7 @@ import java.util.TimerTask;
 @Component
 @Profile("dev")
 
-public class KafkaConsumer implements IConsumer {
+public class KafkaConsumerService implements IConsumer {
     private class Random{
         public static String genString(){
             return "rand";
