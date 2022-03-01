@@ -1,0 +1,165 @@
+# Beginner Tracklist
+
+### Track 1: Java + Spring Boot
+
+x Tạo Spring Boot application bằng Intellij                             
+x Register bean using @Bean or @Component
+x Custom Port, Prefix Path using Java Configuration
+x Create non-web application
+x Dependency Injection with specific Profile
+x Inject all beans instance of an interface
+x Cài đặt Lombok
+
+
+### Track 2: Mysql
+
+x CRUD sử dụng JDBC
+x Multiple datasource JDBC
+x CRUD sử dụng Spring JPA
+x Multiple datasource Spring JPA
+x Pagination using Mysql
+--pending pagination -- Tìm hiểu Partition, Indexing trong Mysql
+
+Cluster index luu truc tiep record tren leaf node , sắp xếp trực tiếp data (physically ordered)
+Non cluster luu nhieu index (moi cot khong phai prime key la 1 index) . Phai tim kiem lan luot tren nhieu index
+Composite key index (column order ) matter
+Some implementations simply concatenate the values in the order of the columns, with delimiters.
+Some hintsight into B-tree implementation of composite key
+Another solution is to simply have a b-tree within a b-tree. When you hit a leaf on the first column, you get both a list of matching records and a mini b-tree of the next column, and so on. Thus, the order of the columns specified in the index makes a huge difference on whether that index will be useful for particular queries.
+
+
+
+* Tìm hiểu một số Engine: MyISam, InnoDB
+
+### Track 3: Kafka
+
+* Cài đặt Kafka
+* Produce message
+* Consume message
+* Consumer group
+* Tìm hiểu về partition và replicate trong Kafka
+vai tro partition : chia nho topic de duoc consume song song
+replica : tren moi node/broker co cac replica cua cac partition tren moi broker . THuc hien tren partition level
+
+broker = a node in cluster
+topics = multiple partition ( eg : partition 1: A-M , partition 2: M-Z )
+topics spread among multiple broker . each spreaded topic contain multiple partition , spreaded accordingly ( leader replica ) . each broker also contains replica for each partition
+one way queue(append only)
+consumer group go blind about offset (manage internally in kafka broker )
+msg can be consumed multiple times (multiple consumer group)
+kafka = queue + pubsub
+
+
+current offset vs committed offset
+current offset : mark the lastest message not sent
+committed offset : mark the message that is processed (come into play when the consumer crash . need to start from the lastest commited message)
+
+
+consumer group
+
+guarantee a partion only consumed by one consumer
+use for scaling + load balancing
+moi consumer group se nhan duoc toan bo cac message , giong voi consumer group khac , va hoat dong hoan toan doc lap voi nhau ( pub sub n-acknowlegde )
+https://vsudo.net/blog/kafka-consumer.html
+
+* Tìm hiểu vai trò của ZooKeeper trong Kafka
+select leader partition
+node heartbeat
+
+
+
+
+
+### **Track 5: Elasticsearch**
+
+* CRUD sử dụng Elasticsearch REST High Client library
+* Multiple datasource Elasticsearch REST High Client
+* CRUD sử dụng Elasticsearch Spring JPA
+* Multiple datasource Elasticsearch Spring JPA
+* Full text search, Term query, Range query, Exist query, Not query
+* Tạo template trước khi tạo index
+* Reindex
+* Search Scroll
+* Pagination using Elasticsearch
+* Bulk
+* Tìm hiểu về shard và replicate trong ElasticSearch
+
+### Track 6: Aerospike
+
+* Cài đặt Aerospike
+* Ghi 1 bản ghi vào Aerospike (Ghi vĩnh viễn/có expire time)
+* Đọc 1 bản ghi từ Aerospike
+* Đọc nhiều bản ghi từ Aerospike
+* Sử dụng AQL
+* Tìm hiểu về các operation khác của Aerospike
+* Tìm hiểu về EventLoop và Callback trong Aerospike
+* Scan và Query
+* Tìm hiểu index trong Aerospike
+* So sánh giữa Aerospike với Redis 
+
+### Track 7: Docker và K8s
+
+* Cài đặt Docker
+* Build image
+* Start/Stop Container
+* Create custom network
+* Xóa image; Dọn cache và các tài nguyên không còn sử dụng
+* Cài đặt Docker Compose
+* Triển khai Sandbox gồm SpringBoot app -> Aerospike
+* Tìm hiểu cách thức hoạt động của K8S
+
+### **Track 8: RocksDB**
+
+* Get, Put, Delete
+* TimeToLive
+* ColumnFamily
+* Transaction
+* KeyMayExist
+* Iterator
+
+### **Track 9: Design pattern and System Design** 
+
+* Hexagon architecture
+* Onion architecture
+* DDD Pattern
+* DAO vs Repository
+* CQRS Pattern
+* Circuit breaker Pattern 
+* Lambda Architecture
+* Kappa Architecture 
+
+### **Track 10: Firebase message**
+
+* Register Token to topic
+* Unregister Token from topic
+* Send Firebase Message to list token
+* Send Firebase Message to topic
+* Send Firebase Message by condition
+* Send non-notification Firebase Message to android token
+
+### **Track 11: Spark**
+
+* Tìm hiểu cách thức hoạt động của Spark
+* Tìm hiểu RDD
+* Tìm hiểu mô hình MapReduce
+* Tìm hiểu Spark Streaming
+* Tìm hiểu HDFS, Parquet file
+
+### **Track 4: HBase**
+
+* Cài đặt HBase (có thể dùng docker)
+* Thao tác bằng HBase shell
+* Thao tác bằng Java API
+* Get
+* Exist bin
+* Exist row
+* Put
+* Delete bin
+* Delete Row
+* Bulk
+* Time To Live
+* Scan + Filter
+* Pagination using HBase Scan
+* Tìm hiểu vai trò của ZooKeeper trong HBase
+* Tìm hiểu về Compact trong Hbase
+* Tìm hiểu các thành phần cấu hình khi cài đặt Hbase
