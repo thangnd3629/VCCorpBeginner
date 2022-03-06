@@ -1,0 +1,12 @@
+version: "3"
+services:
+    spring-server:
+        container_name: spring_container
+        image: spring_api
+        build: 
+            context: ./
+            dockerfile: DockerFile
+        ports:
+            - "8080:8080"
+    
+    
