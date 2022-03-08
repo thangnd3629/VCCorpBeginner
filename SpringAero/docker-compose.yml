@@ -3,10 +3,22 @@ services:
     spring-server:
         container_name: spring_container
         image: spring_api
-        build: 
+        build:
             context: ./
             dockerfile: service.DockerFile
         ports:
             - "8080:8080"
-    
-    
+        depends_on:
+            - aerospike-server
+    aerospike-server:
+        container_name: aerospike
+        image: aerospike/aerospike-server
+        ports:
+            - "3000:3000"
+            - "3001:3001"
+            - "3002:3002"
+        volumes:
+            - /home/thang/Documents/aerospike/data:/opt/aerospike/data
+            - /home/thang/Documents/aerospike/config:/opt/aerospike/etc
+        command: [ "--config-file","/opt/aerospike/etc/aerospike.conf"]
+

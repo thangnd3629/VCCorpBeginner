@@ -27,7 +27,7 @@ public class SessionRepositoryImpl implements SessionRepository {
         WritePolicy policy = new WritePolicy();
         policy.setTimeout(500);
         Key key = new Key("session-storage", "session", sessionId);
-        Bin binExp = new Bin("exp", new Date(new Date().getTime() + (1000 * 60 * 60 * 24)));
+        Bin binExp = new Bin("exp", new Date(new Date().getTime() + (1000 * 60 * 60 * 24)).toString());
         Bin binUser = new Bin("uid", userId);
         client.put(policy, key, binUser, binExp);
         return sessionId;
@@ -36,6 +36,10 @@ public class SessionRepositoryImpl implements SessionRepository {
     @Override
     public Session findSession(String sessionId) {
         Record record = client.get(null, new Key("session-storage", "session", sessionId));
+        if (record == null)
+        {
+            return null;
+        }
         Map<String, String> result = new HashMap<>();
         for(String binKey : record.bins.keySet())
         {
