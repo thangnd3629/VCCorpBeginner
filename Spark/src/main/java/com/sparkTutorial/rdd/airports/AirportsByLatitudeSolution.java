@@ -18,6 +18,7 @@ public class AirportsByLatitudeSolution {
 
         JavaRDD<String> airportsInUSA = airports.filter(line -> Float.valueOf(line.split(Utils.COMMA_DELIMITER)[6]) > 40);
 
+
         JavaRDD<String> airportsNameAndCityNames = airportsInUSA.map(line -> {
                     String[] splits = line.split(Utils.COMMA_DELIMITER);
                     return StringUtils.join(new String[]{splits[1], splits[6]}, ",");
