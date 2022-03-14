@@ -12,7 +12,7 @@ import java.util.TimerTask;
 
 public class KafkaConsumerService implements IConsumer {
     private class Random{
-        public static String genString(){
+        public String genString(){
             return "rand";
         }
     }
@@ -22,7 +22,7 @@ public class KafkaConsumerService implements IConsumer {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                System.out.println("Consuming from datasource kafka: "+ Random.genString());
+                System.out.println("Consuming from datasource kafka: "+ new Random().genString());
             }
         }, 0, 1000);
 
