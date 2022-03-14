@@ -24,7 +24,8 @@ public class UserService {
         Optional<User> user =  userRepository.findUserByUsername(username);
         if (user.isPresent()){
             if (isValidUser(user.get(), password)){
-                sessionId = user.get().getId();
+                String uid = user.get().getId();
+                sessionId = sessionRepository.createSession(uid);
             }
         }
         return sessionId;
