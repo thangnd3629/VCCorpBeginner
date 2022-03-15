@@ -24,6 +24,7 @@ public class ELSService {
         if (desiredRecipes != null){
             for (Recipe recipe : desiredRecipes){
                 recipeRepo.updatePrepTime(recipe.getId(), recipe.getPreparation_time_minutes()+incs);
+
             }
         }
     }
