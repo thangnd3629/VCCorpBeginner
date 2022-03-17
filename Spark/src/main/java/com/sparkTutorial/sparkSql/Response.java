@@ -39,6 +39,7 @@ public class Response implements Serializable {
 
     public void setOccupation(String occupation) {
         this.occupation = occupation;
+
     }
 
     public Integer getSalaryMidPoint() {
