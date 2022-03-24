@@ -5,21 +5,22 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.search.SearchHit;
+import vccorp.els.entity.BaseEntity;
 import vccorp.els.entity.Recipe;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeMapper {
-    public static List<Recipe> deserializeResponse(SearchResponse response) {
+    public static <T extends BaseEntity> List<T> deserializeResponse(SearchResponse response, Class<T> clazz) {
 
             SearchHit[] hits = response.getHits().getHits();
             ObjectMapper mapper = new ObjectMapper();
-            List<Recipe> recipes = new ArrayList<>();
+            List<T> recipes = new ArrayList<>();
             try
             {
                 for (SearchHit hit : hits) {
-                    Recipe recipe = mapper.readValue(hit.getSourceAsString(), Recipe.class);
+                    T recipe = mapper.readValue(hit.getSourceAsString(), clazz);
                     recipe.setId(Integer.parseInt(hit.getId()));
                     recipes.add(recipe);
 
